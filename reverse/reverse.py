@@ -20,11 +20,11 @@ class LinkedList:
     # reference to the head of the list
     self.head = None
 
-  def print_helper(self, node, name):
-    if node is None: 
-      print(f'{name}: None')
-    else: 
-      print(f'{name}: {node.value}')
+  # def print_helper(self, node, name):
+  #   if node is None: 
+  #     print(f'{name}: None')
+  #   else: 
+  #     print(f'{name}: {node.value}')
 
 
   def add_to_head(self, value):
@@ -64,15 +64,23 @@ class LinkedList:
     # while current !== None
     while current is not None:
       # save next_node => that will be 'lost' when we 'flip the arrow'
-      next_node = current.next_node
+      
+      # V1
+      # next_node = current.next_node
+      # V2
+      next_node = current.get_next()
+      
 
       # CHECKING
-      self.print_helper(prev, 'PREV')
-      self.print_helper(current, 'CUR')
-      self.print_helper(next_node, 'NXT')
+      # self.print_helper(prev, 'PREV')
+      # self.print_helper(current, 'CUR')
+      # self.print_helper(next_node, 'NXT')
 
       # Flip the arrow for the current Node
-      current.next = prev
+      # V1
+      # current.next = prev
+      # V2
+      current.set_next(prev)
       
       # tracking the previous and current nodes
       prev = current
@@ -86,7 +94,7 @@ class LinkedList:
 
 
 newList = LinkedList()
-print(newList)
+# print(newList)
 
 newList.add_to_head(1)
 newList.add_to_head(2)
