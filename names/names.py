@@ -19,20 +19,19 @@ duplicates = []
 # -- -- --MY CODE -- -- -- #
 # -- -- --MY CODE -- -- -- #
 
-# -!- Pseudo -!-
-# 1. turn names_1 into Binary Search Tree
-# 2. Loop through names_2
-#     a. call BST.contains() methon on root 
-#     b. if true
-#         - push to duplicated
-
 # -!- Data Structures -!-
-# 1. Node Class
-# 2. BST Class
+# 1. BST Class
 
 # -!- Helper Functions -!-
 # 1. BST.insert()
 # 2. BST.contains()
+
+# -!- Pseudo -!-
+# 1. put all names from names_1 into Binary Search Tree => call BST.insert() with all names
+# 2. Loop through names_2
+#     a. call BST.contains() methon on root tree
+#     b. if true
+#         - push to duplicated
 
 class BST:
     def __init__(self, value=None):
@@ -99,6 +98,18 @@ class BST:
                 return False
             else: 
                 return self.right.contains(value)
+
+# Create BST
+names_tree = BST()
+
+# Fill BST with main array (names_1)
+for name in names_1:
+    names_tree.insert(name)
+
+# Loop through and check if BST contains any names in check array (names_2)
+for name_2 in names_2:
+    if names_tree.contains(name_2):
+        duplicates.append(name_2)
 
 # -- -- --EMD MY CODE -- -- -- #
 # -- -- --EMD MY CODE -- -- -- #
