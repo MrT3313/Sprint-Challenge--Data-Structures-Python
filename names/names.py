@@ -74,7 +74,31 @@ class BST:
                 self.right.insert(value)
     
     def contains(self, value):
-        pass
+        # Empty Tree
+        if self.value == None:
+            print('Empty Tree!')
+            return False
+
+        # Base Case
+        if self.value == value: 
+            return True
+
+        # >
+        if self.value > value:
+            # GO LEFT
+            if self.left == None:
+                # Value is NOT in BST
+                return False
+            else: 
+                return self.left.contains(value)
+        # <
+        if self.value < value:
+            # GO RIGHT
+            if self.right == None:
+                # Value is NOT in the BEST
+                return False
+            else: 
+                return self.right.contains(value)
 
 # -- -- --EMD MY CODE -- -- -- #
 # -- -- --EMD MY CODE -- -- -- #
