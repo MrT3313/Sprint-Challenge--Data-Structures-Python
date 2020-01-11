@@ -1,6 +1,73 @@
 from doubly_linked_list import DoublyLinkedList
 
+#  - ! - ! - ! - #
+#  - ! - ! - ! - #
+#  - ! - ! - ! - #
 
+# This is from the ReadMe:
+    # "A ring buffer is a non-growable buffer with a fixed size. 
+    # When the ring buffer is full and a new element is inserted, 
+    # the oldest element in the ring buffer is overwritten with the newest element."
+
+    # BUT that is not exactly what the tests & examples loop like...
+
+    # If it is simple 'First In First Out' => Queue 
+        # ALWAYS add to TAIL
+        # ALWAYS remove from HEAD 
+    
+# Interpreted Goal:
+    # Input: [a,b,c,d,e,f]
+    # Capacity: 3
+
+    # Output: 
+    # [a, b, c]    
+    # [d, b, c]     {index: 0} is removed --> oldest pointer needs up update to {index: 1}
+    # [d, e, c]     {index: 1} is removed --> oldest pointer needs up update to {index: 2}
+    # [d, e, f]     {index: 2} is removed --> oldest pointer needs up update BACK TO {index: 0}
+
+# ALOT EASIER => no pointers or tracking just using the build in data structure
+    # Output:
+    # [a, b, c]    
+    # [   b, c, d]          # Remove from Head & Add To Tail    
+    # [      c, d, e]       # Remove from Head & Add To Tail
+    # [         d, e, f]    # Remove from Head & Add To Tail
+
+# ACTUAL!!
+## Input
+    # [1,3,4,7,9,10,13,99]
+## Output
+    # Capacity: 5
+    # Storage: 0
+    # 1
+    # Capacity: 5
+    # Storage: 1
+    # 3
+    # Capacity: 5
+    # Storage: 2
+    # 4
+    # Capacity: 5
+    # Storage: 3
+    # 7
+    # Capacity: 5
+    # Storage: 4
+    # 9
+    # [1, 3, 4, 7, 9]
+    # Capacity: 5
+    # Storage: 5
+    # 10
+    # [3, 4, 7, 9, 10]
+    # Capacity: 5
+    # Storage: 5
+    # 13
+    # [4, 7, 9, 10, 13]
+    # Capacity: 5
+    # Storage: 5
+    # 99
+    # [7, 9, 10, 13, 99]
+
+#  - ! - ! - ! - #
+#  - ! - ! - ! - #
+#  - ! - ! - ! - #
 class RingBuffer:
     def __init__(self, capacity):
         self.capacity = capacity
