@@ -48,7 +48,30 @@ class BST:
         return output
 
     def insert(self, value):
-        pass
+        # Empty Tree
+        if self.value == None:
+            print('Empty Tree!')
+            # DONT MAKE A NEW TREE .. just update this currently empty tree value
+            self.value = value
+
+        # > 
+        if self.value > value:
+            # GO LEFT
+            if self.left == None:
+                self.left = BST(value)
+                print(self.left)
+            else:
+                self.left.insert(value)
+
+
+        # <
+        if self.value < value:
+            # GO RIGHT
+            if self.right == None:
+                self.right = BST(value)
+                print(self.right)
+            else:
+                self.right.insert(value)
     
     def contains(self, value):
         pass
