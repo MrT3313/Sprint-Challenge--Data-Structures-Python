@@ -20,6 +20,13 @@ class LinkedList:
     # reference to the head of the list
     self.head = None
 
+  # def print_helper(self, node, name):
+  #   if node is None: 
+  #     print(f'{name}: None')
+  #   else: 
+  #     print(f'{name}: {node.value}')
+
+
   def add_to_head(self, value):
     node = Node(value)
     if self.head is not None:
@@ -43,5 +50,56 @@ class LinkedList:
     return False
 
   def reverse_list(self):
-    # TO BE COMPLETED
-    pass
+    # -- -- -- MY CODE -- -- -- #
+    # Empty LL
+    if self.head == None:
+      return f'ERROR: Empty LL'
+    
+    # Set prev to None => it will always start at the position BEFORE the head
+    prev = None
+
+    # Start @ head
+    current = self.head
+
+    # while current !== None
+    while current is not None:
+      # save next_node => that will be 'lost' when we 'flip the arrow'
+      
+      # V1
+      # next_node = current.next_node
+      # V2
+      next_node = current.get_next()
+      
+
+      # CHECKING
+      # self.print_helper(prev, 'PREV')
+      # self.print_helper(current, 'CUR')
+      # self.print_helper(next_node, 'NXT')
+
+      # Flip the arrow for the current Node
+      # V1
+      # current.next = prev
+      # V2
+      current.set_next(prev)
+      
+      # tracking the previous and current nodes
+      prev = current
+
+      # Iterate current forward in the list
+      current = next_node
+
+    # update head
+    self.head = prev
+
+
+
+newList = LinkedList()
+# print(newList)
+
+newList.add_to_head(1)
+newList.add_to_head(2)
+newList.add_to_head(3)
+newList.add_to_head(4)
+newList.add_to_head(5)
+
+newList.reverse_list()
